@@ -13,4 +13,8 @@ public interface SharedConstants {
      * AES Cipher Padding Instance
      */
     String AESCipherInstance = String.format("%s/ECB/PKCS5PADDING", AESAlgorithm);
+    /**
+     * Internal Server Error message
+     */
+    String INTERNAL_SERVER_ERROR = "Oops! Something went wrong!!";
 }
