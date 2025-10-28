@@ -17,6 +17,7 @@
         <slf4j-api.version>2.0.17</slf4j-api.version>
         <logback-classic.version>1.5.20</logback-classic.version>
         <springdoc-openapi-starter-webmvc-ui.version>2.8.13</springdoc-openapi-starter-webmvc-ui.version>
+        <jjwt-api.version>0.13.0</jjwt-api.version>
     </properties>
     <dependencies>
         <dependency>
@@ -34,6 +35,24 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-context</artifactId>
             <version>${spring-context.version}</version>
+        </dependency>
+        <!--Json Web Token dependencies-->
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-api</artifactId>
+            <version>${jjwt-api.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-impl</artifactId>
+            <version>${jjwt-api.version}</version>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt-jackson</artifactId>
+            <version>${jjwt-api.version}</version>
+            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
