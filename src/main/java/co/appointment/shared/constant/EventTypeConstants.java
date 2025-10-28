@@ -1,9 +1,6 @@
 package co.appointment.shared.constant;
 
-/**
- * Message Header Constants
- */
-public interface MessageHeaderConstants {
+public interface EventTypeConstants {
     String EVENT_TYPE = "EventType";
     String VERIFY_EMAIL_EVENT = "VerifyEmail";
 }
