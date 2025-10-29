@@ -33,5 +33,5 @@ public interface EncryptionService {
      * @param cipherText Cipher Text
      * @return Plain text
      */
-    String decryptCipherText(String cipherText) throws NoSuchPaddingException, NoSuchAlgorithmException, InvalidKeyException, IllegalBlockSizeException, BadPaddingException;
+    String decryptCipherText(String cipherText);
 }
