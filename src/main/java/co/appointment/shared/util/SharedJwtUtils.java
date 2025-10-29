@@ -58,6 +58,14 @@ public class SharedJwtUtils {
         }
         return claimValue.toString();
     }
+    public static  <T> T extractClaimByName(
+            final String token,
+            final String claimName,
+            final String secretKey,
+            Class<T> type) {
+        final Claims claims = extractClaims(token, secretKey);
+        return claims.get(claimName, type);
+    }
 
     public static boolean validateToken(final String token, final String secretKey) {
         try {
