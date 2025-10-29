@@ -5,4 +5,5 @@ public interface TokenConstants {
     String FULL_NAME = "fullName";
     String ROLES = "roles";
     String AUTHORIZATION_HEADER = "Authorization";
+    String TOKEN_PREFIX = "Bearer ";
 }
