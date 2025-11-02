@@ -4,7 +4,7 @@ import lombok.Data;
 
 @Data
 public class OpenApiSettings {
-    private OpenApiInfo info;
+    private OpenApiInfo info = new OpenApiInfo();
 
     @Data
     public static class OpenApiInfo {

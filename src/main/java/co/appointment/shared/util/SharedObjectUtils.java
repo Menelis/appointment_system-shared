@@ -1,6 +1,7 @@
 package co.appointment.shared.util;
 
 import co.appointment.shared.constant.SharedConstants;
+import co.appointment.shared.entity.base.BaseEntity;
 
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
@@ -17,5 +18,9 @@ public class SharedObjectUtils {
         byte[] decodedKey = Base64.getDecoder().decode(secretKey);
         // rebuild key using SecretKeySpec
         return new SecretKeySpec(decodedKey, 0, decodedKey.length, SharedConstants.AESAlgorithm);
+    }
+
+    public static  <T extends BaseEntity> void mapAuditFields(T newEntity, T oldEntity) {
+        newEntity.setCreatedAt(oldEntity.getCreatedAt());
     }
 }
