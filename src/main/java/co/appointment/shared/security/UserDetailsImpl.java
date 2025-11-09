@@ -1,14 +1,20 @@
 package co.appointment.shared.security;
 
+import co.appointment.grpc.GetUserResponse;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serial;
 import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
+@Slf4j
 public class UserDetailsImpl implements UserDetails {
 
     @Serial
@@ -50,6 +56,21 @@ public class UserDetailsImpl implements UserDetails {
         this.contactNo = contactNo;
         this.password = password;
         this.authorities = authorities;
+    }
+    public static UserDetailsImpl build(final GetUserResponse user) {
+        log.info("Id:{}, Roles: {}", user.getId(), user.getRolesList());
+        List<GrantedAuthority> authorities = user.getRolesList()
+                .stream()
+                .map(role -> new SimpleGrantedAuthority(String.format("ROLE_%s", role)))
+                .collect(Collectors.toList());
+        return new UserDetailsImpl(
+                UUID.fromString(user.getId()),
+                user.getFirstName(),
+                user.getLastName(),
+                user.getEmail(),
+                user.getContactNo(),
+                null,
+                authorities);
     }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

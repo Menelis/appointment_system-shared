@@ -46,10 +46,6 @@ public class SharedJwtUtils {
     public static Date extractExpiration(final String token, final String secretKey) {
         return extractClaim(token, Claims::getExpiration, secretKey);
     }
-
-    public static boolean isTokenExpired(final String token, final String secretKey) {
-        return extractClaim(token, Claims::getExpiration, secretKey).before(new Date());
-    }
     public static String extractClaimByKey(final String token, final String claimName, final String secretKey) {
         final Claims claims = extractClaims(token, secretKey);
         Object claimValue = claims.get(claimName);
@@ -67,7 +63,7 @@ public class SharedJwtUtils {
         return claims.get(claimName, type);
     }
 
-    public static boolean validateToken(final String token, final String secretKey) {
+    public static boolean isValidToken(final String token, final String secretKey) {
         try {
             Jwts.parser()
                     .verifyWith(generateSecretKey(secretKey))

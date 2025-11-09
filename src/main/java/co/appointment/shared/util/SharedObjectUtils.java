@@ -23,4 +23,5 @@ public class SharedObjectUtils {
     public static  <T extends BaseEntity> void mapAuditFields(T newEntity, T oldEntity) {
         newEntity.setCreatedAt(oldEntity.getCreatedAt());
     }
+
 }
