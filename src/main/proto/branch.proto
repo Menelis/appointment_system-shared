@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "co.appointment.grpc";
+option java_outer_classname = "BranchProto";
+
+service BranchService {
+  rpc ProcessBranchById(GetBranchByIdRequest) returns (GetBranchResponse) {}
+}
+
+message GetBranchByIdRequest {
+  int32 id = 1;
+}
+
+message GetBranchResponse {
+  int32 id = 1;
+  string name = 2;
+  string full_address = 3;
+}
