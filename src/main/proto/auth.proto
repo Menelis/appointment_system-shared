@@ -22,5 +22,6 @@ message GetUserResponse {
     string last_name = 3;
     string email = 4;
     string contact_no = 5;
-    repeated string roles = 6;
+    string full_name = 6;
+    repeated string roles = 7;
 }
