@@ -5,6 +5,7 @@ import co.appointment.shared.entity.base.BaseEntity;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.util.StringUtils;
 
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
@@ -53,5 +54,12 @@ public class SharedObjectUtils {
         SimpleDateFormat formatter = new SimpleDateFormat(dateFormat);
 
         return formatter.format(date);
+    }
+
+    public static String returnEmptyIfNullOrBlank(final String stringValue) {
+        if(StringUtils.hasText(stringValue)) {
+            return stringValue;
+        }
+        return "";
     }
 }
