@@ -34,4 +34,5 @@ public interface SharedConstants {
      * Page Size parameter name.
      */
     String PAGE_SIZE_PARAMETER_NAME = "pageSize";
+    String APPOINTMENT_SYSTEM_EMAIL_FOOTER = "Kind Regards,<br/>Appointment System Team.";
 }
