@@ -27,6 +27,7 @@
         <os-maven-plugin.version>1.7.1</os-maven-plugin.version>
         <grpc.version>1.76.0</grpc.version>
         <spring-kafka.version>3.3.10</spring-kafka.version>
+        <spring-security-oauth2-resource-server.version>6.5.6</spring-security-oauth2-resource-server.version>
     </properties>
     <dependencies>
         <dependency>
@@ -108,6 +109,12 @@
             <artifactId>grpc-netty-shaded</artifactId>
             <version>${grpc.version}</version>
 <!--            <optional>true</optional>-->
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-oauth2-resource-server</artifactId>
+            <version>${spring-security-oauth2-resource-server.version}</version>
+            <optional>true</optional>
         </dependency>
 
     </dependencies>
