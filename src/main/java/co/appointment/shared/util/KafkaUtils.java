@@ -46,7 +46,7 @@ public class KafkaUtils {
        });
     }
     private static List<Header> getEventHeaders(final  Map<String, Object> eventHeaders) {
-        final List<Header> headers = new ArrayList<Header>();
+        final List<Header> headers = new ArrayList<>();
         if(eventHeaders.isEmpty()) {
             return headers;
         }
