@@ -6,4 +6,5 @@ public interface EventTypeConstants {
     String BOOKING_CONFIRMED_EVENT = "bookingConfirmed";
     String BOOKING_PENDING_CONFIRMED_EVENT = "bookingPendingConfirmed";
     String BOOKING_CANCELLED_EVENT = "bookingCancelled";
+    String PASSWORD_RESET_EVENT = "passwordReset";
 }
