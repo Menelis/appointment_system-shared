@@ -1,7 +1,6 @@
 package co.appointment.shared.security;
 
 import co.appointment.grpc.GetUserResponse;
-import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
