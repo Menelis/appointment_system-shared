@@ -1,5 +1,6 @@
 package co.appointment.shared.util;
 
+import co.appointment.shared.event.kafka.KafkaNotificationEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.clients.producer.RecordMetadata;
@@ -19,31 +20,25 @@ public class KafkaUtils {
     /**
      * Send Kafka Event.
      * @param kafkaTemplate {@link KafkaTemplate} instance
-     * @param topic Kafka topic
-     * @param key Event Key
-     * @param event Event Value
-     * @param eventHeaders Event Headers
-     * @param <K> Generic Key
-     * @param <V> Generic Value
+     * @param kafkaNotificationEvent {@link KafkaNotificationEvent}
+     * @param <K> generic Key
+     * @param <V> Generic value
      */
-    public  static <K, V> void sendKafkaEvent(
+    public static <K, V> void sendKafkaEvent(
             final KafkaTemplate<K, V> kafkaTemplate,
-            final String topic,
-            final K key,
-            final V event,
-            final Map<String, Object> eventHeaders) {
-       CompletableFuture<SendResult<K, V>> completableFuture =
-               kafkaTemplate.send(new ProducerRecord<>(
-                       topic,null,System.currentTimeMillis(),key,event, getEventHeaders(eventHeaders)));
-       completableFuture.whenComplete((result, error) -> {
-           if (error != null) {
-               log.error(error.getMessage(), error);
-               return;
-           }
-           RecordMetadata recordMetadata = result.getRecordMetadata();
-           log.info("Event was sent successfully to topic: {}, partition: {}, offset: {} at timestamp: {}",
-                   topic, recordMetadata.partition(), recordMetadata.offset(), recordMetadata.timestamp());
-       });
+            KafkaNotificationEvent<K , V> kafkaNotificationEvent) {
+        CompletableFuture<SendResult<K, V>> completableFuture =
+                kafkaTemplate.send(new ProducerRecord<>(
+                        kafkaNotificationEvent.getTopic(), null, System.currentTimeMillis(), kafkaNotificationEvent.getKey(), kafkaNotificationEvent.getEvent(), getEventHeaders(kafkaNotificationEvent.getEventHeaders())));
+        completableFuture.whenComplete((result, error) -> {
+            if(error != null) {
+                log.error("There was an issue sending an event to kafka topic:{} with message: {}", kafkaNotificationEvent.getTopic(), error.getMessage());
+                return;
+            }
+            RecordMetadata recordMetadata = result.getRecordMetadata();
+            log.info("Successfully sent message=[{}] to topic partition:{}-{} with offset:{} at timestamp:{}",
+                    kafkaNotificationEvent.getEvent(), recordMetadata.topic(), recordMetadata.partition(), recordMetadata.offset(), recordMetadata.timestamp());
+        });
     }
     private static List<Header> getEventHeaders(final  Map<String, Object> eventHeaders) {
         final List<Header> headers = new ArrayList<>();
