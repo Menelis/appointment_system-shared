@@ -19,17 +19,17 @@ public class SharedObjectUtils {
    * @param secretKey secret key
    * @return {@link SecretKey}
    */
-  public static SecretKey getSecretKey(String secretKey) {
+  public static SecretKey getSecretKey(final String secretKey) {
     // decode the base64 encoded string
     byte[] decodedKey = Base64.getDecoder().decode(secretKey);
     // rebuild key using SecretKeySpec
     return new SecretKeySpec(decodedKey, 0, decodedKey.length, SharedConstants.AESAlgorithm);
   }
 
-  public static <T extends BaseEntity> void mapAuditFields(T newEntity, T oldEntity) {
+  public static <T extends BaseEntity> void mapAuditFields(
+          final T newEntity, final T oldEntity) {
     newEntity.setCreatedAt(oldEntity.getCreatedAt());
   }
-
   /**
    * Returns {@link Pageable} instance with provided pageNo, pageSize with sorting.
    *

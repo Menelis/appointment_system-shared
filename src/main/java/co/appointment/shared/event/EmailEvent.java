@@ -6,7 +6,7 @@ public record EmailEvent(
     String body,
     boolean bodyEncrypted,
     boolean recipientEmailEncrypted) {
-  public EmailEvent(String recipientEmail, String subject, String body) {
+  public EmailEvent(final String recipientEmail, final String subject, final String body) {
     this(recipientEmail, subject, body, false, false);
   }
 }

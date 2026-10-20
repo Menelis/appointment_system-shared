@@ -26,7 +26,7 @@ public class KafkaUtils {
    */
   public static <K, V> void sendKafkaEvent(
       final KafkaTemplate<K, V> kafkaTemplate,
-      KafkaNotificationEvent<K, V> kafkaNotificationEvent) {
+      final KafkaNotificationEvent<K, V> kafkaNotificationEvent) {
     CompletableFuture<SendResult<K, V>> completableFuture =
         kafkaTemplate.send(
             new ProducerRecord<>(

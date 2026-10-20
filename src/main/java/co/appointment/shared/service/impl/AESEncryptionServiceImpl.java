@@ -28,7 +28,7 @@ public class AESEncryptionServiceImpl implements EncryptionService {
   }
 
   @Override
-  public SecretKey generateEncryptionKey(int keySize) {
+  public SecretKey generateEncryptionKey(final int keySize) {
     try {
       KeyGenerator keyGenerator = KeyGenerator.getInstance(SharedConstants.AESAlgorithm);
       keyGenerator.init(keySize);
@@ -38,7 +38,6 @@ public class AESEncryptionServiceImpl implements EncryptionService {
     }
     return null;
   }
-
   @Override
   public String encryptText(final String plainText) {
     try {
