@@ -4,6 +4,6 @@ import lombok.Data;
 
 @Data
 public class JwtSettings {
-    private String secret;
-    private int expirationMs;
+  private String secret;
+  private int expirationMs;
 }

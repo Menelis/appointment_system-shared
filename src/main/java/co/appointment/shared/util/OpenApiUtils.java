@@ -9,21 +9,22 @@ import io.swagger.v3.oas.models.security.SecurityScheme;
 
 public class OpenApiUtils {
 
-    private static SecurityScheme createAPIKeyScheme() {
-        return new SecurityScheme().type(SecurityScheme.Type.HTTP)
-                .bearerFormat("JWT")
-                .scheme("bearer");
-    }
+  private static SecurityScheme createAPIKeyScheme() {
+    return new SecurityScheme().type(SecurityScheme.Type.HTTP).bearerFormat("JWT").scheme("bearer");
+  }
 
-    public static OpenAPI openAPI(final OpenApiSettings openApiSettings) {
+  public static OpenAPI openAPI(final OpenApiSettings openApiSettings) {
 
-        OpenApiSettings.OpenApiInfo info = openApiSettings.getInfo();
+    OpenApiSettings.OpenApiInfo info = openApiSettings.getInfo();
 
-        return new OpenAPI().addSecurityItem(new SecurityRequirement()
-                        .addList("Bearer Authentication"))
-                .components(new Components().addSecuritySchemes("Bearer Authentication", createAPIKeyScheme()))
-                .info(new Info().title(info.getTitle())
-                        .description(info.getDescription())
-                        .version(info.getVersion()));
-    }
+    return new OpenAPI()
+        .addSecurityItem(new SecurityRequirement().addList("Bearer Authentication"))
+        .components(
+            new Components().addSecuritySchemes("Bearer Authentication", createAPIKeyScheme()))
+        .info(
+            new Info()
+                .title(info.getTitle())
+                .description(info.getDescription())
+                .version(info.getVersion()));
+  }
 }
