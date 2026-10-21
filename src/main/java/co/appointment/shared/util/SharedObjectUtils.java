@@ -14,7 +14,7 @@ import org.springframework.util.StringUtils;
 
 public class SharedObjectUtils {
   /**
-   * Returns a SecretKey from encoded string
+   * Returns a SecretKey from encoded string.
    *
    * @param secretKey secret key
    * @return {@link SecretKey}
@@ -26,10 +26,10 @@ public class SharedObjectUtils {
     return new SecretKeySpec(decodedKey, 0, decodedKey.length, SharedConstants.AESAlgorithm);
   }
 
-  public static <T extends BaseEntity> void mapAuditFields(
-          final T newEntity, final T oldEntity) {
+  public static <T extends BaseEntity> void mapAuditFields(final T newEntity, final T oldEntity) {
     newEntity.setCreatedAt(oldEntity.getCreatedAt());
   }
+
   /**
    * Returns {@link Pageable} instance with provided pageNo, pageSize with sorting.
    *

@@ -149,11 +149,18 @@
                 <version>${maven-checkstyle-plugin.version}</version>
                 <configuration>
 <!--                    <configLocation>src/main/resources/check_style.xml</configLocation>-->
-                    <configLocation>google_checks.xml</configLocation>
+                    <configLocation>custom_check_style.xml</configLocation>
                     <consoleOutput>true</consoleOutput>
                     <failsOnError>true</failsOnError>
                     <includeTestSourceDirectory>true</includeTestSourceDirectory>
                 </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>za.co</groupId>
+                        <artifactId>code-format</artifactId>
+                        <version>1.0.0</version>
+                    </dependency>
+                </dependencies>
                 <executions>
                     <execution>
                         <id>validate</id>
@@ -173,6 +180,11 @@
                         <removeUnusedImports/>
                         <trimTrailingWhitespace/>
                         <endWithNewline/>
+                        <!-- Applies Google Java Style (handles parameter line wrapping) -->
+                        <googleJavaFormat>
+                            <version>1.34.0</version>
+                            <style>GOOGLE</style> <!-- Default: 2-space indent, 100-char line length -->
+                        </googleJavaFormat>
                     </java>
                 </configuration>
                 <executions>

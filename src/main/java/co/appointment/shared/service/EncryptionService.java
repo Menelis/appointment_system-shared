@@ -4,14 +4,14 @@ import javax.crypto.SecretKey;
 
 public interface EncryptionService {
   /**
-   * Generate a 256 AES Secret Key
+   * Generate a 256 AES Secret Key.
    *
    * @return {@link SecretKey}
    */
   SecretKey generateEncryptionKey();
 
   /**
-   * Generate an AES Secret Key of keySize
+   * Generate an AES Secret Key of keySize.
    *
    * @param keySize Key Size
    * @return {@link SecretKey}
@@ -19,7 +19,7 @@ public interface EncryptionService {
   SecretKey generateEncryptionKey(int keySize);
 
   /**
-   * Encrypt a plaintext using AES Algorithm with the provided encryption key
+   * Encrypt a plaintext using AES Algorithm with the provided encryption key.
    *
    * @param plainText String to encrypt
    * @return CipherText
@@ -27,7 +27,7 @@ public interface EncryptionService {
   String encryptText(String plainText);
 
   /**
-   * Decrypts CipherText using AES algorithm with provided encryption key
+   * Decrypts CipherText using AES algorithm with provided encryption key.
    *
    * @param cipherText Cipher Text
    * @return Plain text

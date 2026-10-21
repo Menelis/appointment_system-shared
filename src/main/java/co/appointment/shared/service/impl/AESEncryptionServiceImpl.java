@@ -38,6 +38,7 @@ public class AESEncryptionServiceImpl implements EncryptionService {
     }
     return null;
   }
+
   @Override
   public String encryptText(final String plainText) {
     try {
