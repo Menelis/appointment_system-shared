@@ -12,15 +12,15 @@ import lombok.Getter;
  */
 @Getter
 public class KafkaNotificationEvent<K, V> extends NotificationEvent<V> {
-  private final String topic;
-  private final Map<String, Object> eventHeaders;
-  private final K key;
+    private final String topic;
+    private final Map<String, Object> eventHeaders;
+    private final K key;
 
-  public KafkaNotificationEvent(
-      final String topic, final V event, final Map<String, Object> eventHeaders, final K key) {
-    super(event);
-    this.topic = topic;
-    this.eventHeaders = eventHeaders;
-    this.key = key;
-  }
+    public KafkaNotificationEvent(
+            final String topic, final V event, final Map<String, Object> eventHeaders, final K key) {
+        super(event);
+        this.topic = topic;
+        this.eventHeaders = eventHeaders;
+        this.key = key;
+    }
 }

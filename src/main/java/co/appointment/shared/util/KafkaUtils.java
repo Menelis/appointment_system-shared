@@ -17,55 +17,50 @@ import org.springframework.kafka.support.SendResult;
 @Slf4j
 @SuppressWarnings({"LineLength"})
 public class KafkaUtils {
-  /**
-   * Send Kafka Event.
-   *
-   * @param kafkaTemplate {@link KafkaTemplate} instance
-   * @param kafkaNotificationEvent {@link KafkaNotificationEvent}
-   * @param <K> generic Key
-   * @param <V> Generic value
-   */
-  public static <K, V> void sendKafkaEvent(
-      final KafkaTemplate<K, V> kafkaTemplate,
-      final KafkaNotificationEvent<K, V> kafkaNotificationEvent) {
-    CompletableFuture<SendResult<K, V>> completableFuture =
-        kafkaTemplate.send(
-            new ProducerRecord<>(
+    /**
+     * Send Kafka Event.
+     *
+     * @param kafkaTemplate {@link KafkaTemplate} instance
+     * @param kafkaNotificationEvent {@link KafkaNotificationEvent}
+     * @param <K> generic Key
+     * @param <V> Generic value
+     */
+    public static <K, V> void sendKafkaEvent(
+            final KafkaTemplate<K, V> kafkaTemplate, final KafkaNotificationEvent<K, V> kafkaNotificationEvent) {
+        CompletableFuture<SendResult<K, V>> completableFuture = kafkaTemplate.send(new ProducerRecord<>(
                 kafkaNotificationEvent.getTopic(),
                 null,
                 System.currentTimeMillis(),
                 kafkaNotificationEvent.getKey(),
                 kafkaNotificationEvent.getEvent(),
                 getEventHeaders(kafkaNotificationEvent.getEventHeaders())));
-    completableFuture.whenComplete(
-        (result, error) -> {
-          if (error != null) {
-            log.error(
-                "There was an issue sending an event to kafka topic:{} with message: {}",
-                kafkaNotificationEvent.getTopic(),
-                error.getMessage());
-            return;
-          }
-          RecordMetadata recordMetadata = result.getRecordMetadata();
-          log.info(
-              "Successfully sent message=[{}] to topic partition:{}-{} with offset:{} at timestamp:{}",
-              kafkaNotificationEvent.getEvent(),
-              recordMetadata.topic(),
-              recordMetadata.partition(),
-              recordMetadata.offset(),
-              recordMetadata.timestamp());
+        completableFuture.whenComplete((result, error) -> {
+            if (error != null) {
+                log.error(
+                        "There was an issue sending an event to kafka topic:{} with message: {}",
+                        kafkaNotificationEvent.getTopic(),
+                        error.getMessage());
+                return;
+            }
+            RecordMetadata recordMetadata = result.getRecordMetadata();
+            log.info(
+                    "Successfully sent message=[{}] to topic partition:{}-{} with offset:{} at timestamp:{}",
+                    kafkaNotificationEvent.getEvent(),
+                    recordMetadata.topic(),
+                    recordMetadata.partition(),
+                    recordMetadata.offset(),
+                    recordMetadata.timestamp());
         });
-  }
-
-  private static List<Header> getEventHeaders(final Map<String, Object> eventHeaders) {
-    final List<Header> headers = new ArrayList<>();
-    if (eventHeaders.isEmpty()) {
-      return headers;
     }
-    eventHeaders.forEach(
-        (key, value) ->
-            headers.add(new RecordHeader(key, value.toString().getBytes(StandardCharsets.UTF_8))));
 
-    return headers;
-  }
+    private static List<Header> getEventHeaders(final Map<String, Object> eventHeaders) {
+        final List<Header> headers = new ArrayList<>();
+        if (eventHeaders.isEmpty()) {
+            return headers;
+        }
+        eventHeaders.forEach((key, value) ->
+                headers.add(new RecordHeader(key, value.toString().getBytes(StandardCharsets.UTF_8))));
+
+        return headers;
+    }
 }

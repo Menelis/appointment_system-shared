@@ -17,83 +17,89 @@ import org.springframework.security.core.userdetails.UserDetails;
 @Slf4j
 public class UserDetailsImpl implements UserDetails {
 
-  @Serial private static final long serialVersionUID = 1L;
+    @Serial
+    private static final long serialVersionUID = 1L;
 
-  @Getter private final UUID id;
+    @Getter
+    private final UUID id;
 
-  @Getter private final String firstName;
+    @Getter
+    private final String firstName;
 
-  @Getter private final String lastName;
+    @Getter
+    private final String lastName;
 
-  @Getter private final String email;
+    @Getter
+    private final String email;
 
-  @Getter private final String contactNo;
+    @Getter
+    private final String contactNo;
 
-  @JsonIgnore private final String password;
+    @JsonIgnore
+    private final String password;
 
-  private final Collection<? extends GrantedAuthority> authorities;
+    private final Collection<? extends GrantedAuthority> authorities;
 
-  public UserDetailsImpl(
-      final UUID id,
-      final String firstName,
-      final String lastName,
-      final String email,
-      final String contactNo,
-      final String password,
-      final Collection<? extends GrantedAuthority> authorities) {
-    this.id = id;
-    this.firstName = firstName;
-    this.lastName = lastName;
-    this.email = email;
-    this.contactNo = contactNo;
-    this.password = password;
-    this.authorities = authorities;
-  }
-
-  public static UserDetailsImpl build(final GetUserResponse user) {
-    Set<GrantedAuthority> authorities =
-        user.getRolesList().stream()
-            .map(role -> new SimpleGrantedAuthority(String.format("ROLE_%s", role)))
-            .collect(Collectors.toSet());
-    return new UserDetailsImpl(
-        UUID.fromString(user.getId()),
-        user.getFirstName(),
-        user.getLastName(),
-        user.getEmail(),
-        user.getContactNo(),
-        null,
-        authorities);
-  }
-
-  @Override
-  public Collection<? extends GrantedAuthority> getAuthorities() {
-    return authorities;
-  }
-
-  @Override
-  public String getPassword() {
-    return password;
-  }
-
-  @Override
-  public String getUsername() {
-    return email;
-  }
-
-  @Override
-  public int hashCode() {
-    return Objects.hash(email);
-  }
-
-  @Override
-  public boolean equals(final Object obj) {
-    if (this == obj) {
-      return true;
+    public UserDetailsImpl(
+            final UUID id,
+            final String firstName,
+            final String lastName,
+            final String email,
+            final String contactNo,
+            final String password,
+            final Collection<? extends GrantedAuthority> authorities) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.contactNo = contactNo;
+        this.password = password;
+        this.authorities = authorities;
     }
-    if (obj == null || getClass() != obj.getClass()) {
-      return false;
+
+    public static UserDetailsImpl build(final GetUserResponse user) {
+        Set<GrantedAuthority> authorities = user.getRolesList().stream()
+                .map(role -> new SimpleGrantedAuthority(String.format("ROLE_%s", role)))
+                .collect(Collectors.toSet());
+        return new UserDetailsImpl(
+                UUID.fromString(user.getId()),
+                user.getFirstName(),
+                user.getLastName(),
+                user.getEmail(),
+                user.getContactNo(),
+                null,
+                authorities);
     }
-    UserDetailsImpl that = (UserDetailsImpl) obj;
-    return Objects.equals(email, that.email);
-  }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return authorities;
+    }
+
+    @Override
+    public String getPassword() {
+        return password;
+    }
+
+    @Override
+    public String getUsername() {
+        return email;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(email);
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        UserDetailsImpl that = (UserDetailsImpl) obj;
+        return Objects.equals(email, that.email);
+    }
 }

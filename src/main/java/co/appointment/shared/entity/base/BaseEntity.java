@@ -11,12 +11,12 @@ import lombok.Setter;
 @Setter
 @MappedSuperclass
 public abstract class BaseEntity {
-  /** Audit fields of when record when created. */
-  @Column(nullable = false, name = "created_at")
-  private LocalDateTime createdAt = LocalDateTime.now();
-  //    /**
-  //     * Audit fields of who created the record.
-  //     */
-  //    @Column(nullable = false, name = "created_by")
-  //    private UUID createdBy;
+    /** Audit fields of when record when created. */
+    @Column(nullable = false, name = "created_at")
+    private LocalDateTime createdAt = LocalDateTime.now();
+    //    /**
+    //     * Audit fields of who created the record.
+    //     */
+    //    @Column(nullable = false, name = "created_by")
+    //    private UUID createdBy;
 }

@@ -9,9 +9,9 @@ import lombok.Getter;
  */
 @Getter
 public abstract class NotificationEvent<T> {
-  private final T event;
+    private final T event;
 
-  public NotificationEvent(final T event) {
-    this.event = event;
-  }
+    public NotificationEvent(final T event) {
+        this.event = event;
+    }
 }

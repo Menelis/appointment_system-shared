@@ -6,8 +6,8 @@ import lombok.Data;
 
 @Data
 public class CorsSettings {
-  private List<String> allowedOrigins = new ArrayList<>();
-  private List<String> allowedHeaders = new ArrayList<>();
-  private List<String> allowedMethods = new ArrayList<>();
-  private long maxAge = 3600;
+    private List<String> allowedOrigins = new ArrayList<>();
+    private List<String> allowedHeaders = new ArrayList<>();
+    private List<String> allowedMethods = new ArrayList<>();
+    private long maxAge = 3600;
 }

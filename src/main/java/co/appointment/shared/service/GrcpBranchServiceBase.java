@@ -7,29 +7,29 @@ import co.appointment.shared.record.BranchRecord;
 
 public abstract class GrcpBranchServiceBase {
 
-  protected final BranchServiceGrpc.BranchServiceBlockingStub branchServiceBlockingStub;
+    protected final BranchServiceGrpc.BranchServiceBlockingStub branchServiceBlockingStub;
 
-  public GrcpBranchServiceBase(
-      final BranchServiceGrpc.BranchServiceBlockingStub branchServiceBlockingStub) {
-    this.branchServiceBlockingStub = branchServiceBlockingStub;
-  }
-
-  public BranchRecord getBranchById(final int id) {
-    GetBranchByIdRequest request = GetBranchByIdRequest.newBuilder().setId(id).build();
-    GetBranchResponse response = branchServiceBlockingStub.processBranchById(request);
-    if (response == null) {
-      return null;
+    public GrcpBranchServiceBase(final BranchServiceGrpc.BranchServiceBlockingStub branchServiceBlockingStub) {
+        this.branchServiceBlockingStub = branchServiceBlockingStub;
     }
-    return new BranchRecord(
-        response.getName(),
-        response.getStreetNo(),
-        response.getAddressLine1(),
-        response.getAddressLine2(),
-        response.getCity(),
-        response.getProvince(),
-        response.getPostalCode(),
-        response.getEmailAddress(),
-        response.getLandLine(),
-        response.getFaxNumber());
-  }
+
+    public BranchRecord getBranchById(final int id) {
+        GetBranchByIdRequest request =
+                GetBranchByIdRequest.newBuilder().setId(id).build();
+        GetBranchResponse response = branchServiceBlockingStub.processBranchById(request);
+        if (response == null) {
+            return null;
+        }
+        return new BranchRecord(
+                response.getName(),
+                response.getStreetNo(),
+                response.getAddressLine1(),
+                response.getAddressLine2(),
+                response.getCity(),
+                response.getProvince(),
+                response.getPostalCode(),
+                response.getEmailAddress(),
+                response.getLandLine(),
+                response.getFaxNumber());
+    }
 }
