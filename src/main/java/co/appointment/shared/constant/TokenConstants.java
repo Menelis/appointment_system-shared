@@ -1,5 +1,6 @@
 package co.appointment.shared.constant;
 
+@SuppressWarnings({"InterfaceIsType"})
 public interface TokenConstants {
     String EMAIL = "email";
     String FULL_NAME = "given_username";

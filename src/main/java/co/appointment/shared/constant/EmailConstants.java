@@ -1,5 +1,6 @@
 package co.appointment.shared.constant;
 
+@SuppressWarnings({"InterfaceIsType"})
 public interface EmailConstants {
     String VERIFY_EMAIL_MAIL = "verifyEmail";
     String PASSWORD_RESET_MAIL = "passwordReset";

@@ -15,7 +15,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
 
 @Slf4j
-@SuppressWarnings({"LineLength"})
+@SuppressWarnings({"LineLength", "HideUtilityClassConstructor"})
 public class KafkaUtils {
     /**
      * Send Kafka Event.

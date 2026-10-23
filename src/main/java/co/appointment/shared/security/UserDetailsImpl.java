@@ -8,6 +8,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.UUID;
 import java.util.stream.Collectors;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.GrantedAuthority;
@@ -15,6 +16,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 @Slf4j
+@AllArgsConstructor
 public class UserDetailsImpl implements UserDetails {
 
     @Serial
@@ -39,23 +41,6 @@ public class UserDetailsImpl implements UserDetails {
     private final String password;
 
     private final Collection<? extends GrantedAuthority> authorities;
-
-    public UserDetailsImpl(
-            final UUID id,
-            final String firstName,
-            final String lastName,
-            final String email,
-            final String contactNo,
-            final String password,
-            final Collection<? extends GrantedAuthority> authorities) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.contactNo = contactNo;
-        this.password = password;
-        this.authorities = authorities;
-    }
 
     public static UserDetailsImpl build(final GetUserResponse user) {
         Set<GrantedAuthority> authorities = user.getRolesList().stream()

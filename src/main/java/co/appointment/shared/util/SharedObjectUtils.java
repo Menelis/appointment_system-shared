@@ -12,7 +12,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.util.StringUtils;
 
+@SuppressWarnings({"HideUtilityClassConstructor"})
 public class SharedObjectUtils {
+
     /**
      * Returns a SecretKey from encoded string.
      *
@@ -23,7 +25,7 @@ public class SharedObjectUtils {
         // decode the base64 encoded string
         byte[] decodedKey = Base64.getDecoder().decode(secretKey);
         // rebuild key using SecretKeySpec
-        return new SecretKeySpec(decodedKey, 0, decodedKey.length, SharedConstants.AESAlgorithm);
+        return new SecretKeySpec(decodedKey, 0, decodedKey.length, SharedConstants.AESALGORITHM);
     }
 
     public static <T extends BaseEntity> void mapAuditFields(final T newEntity, final T oldEntity) {

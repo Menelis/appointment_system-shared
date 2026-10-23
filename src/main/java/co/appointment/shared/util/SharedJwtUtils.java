@@ -4,6 +4,7 @@ import org.springframework.security.oauth2.server.resource.authentication.JwtAut
 import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
 import org.springframework.util.StringUtils;
 
+@SuppressWarnings({"HideUtilityClassConstructor"})
 public class SharedJwtUtils {
     /**
      * Map Granted Authorities to JWT. By default, Spring Security maps SCOPE(s) to granted

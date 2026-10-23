@@ -1,14 +1,15 @@
 package co.appointment.shared.constant;
 
+@SuppressWarnings({"InterfaceIsType"})
 public interface SharedConstants {
     /** AES Encryption Key size. */
     Integer AES_KEY_SIZE = 256;
 
     /** AES Algorithm Constant. */
-    String AESAlgorithm = "AES";
+    String AESALGORITHM = "AES";
 
     /** AES Cipher Padding Instance. */
-    String AESCipherInstance = String.format("%s/ECB/PKCS5PADDING", AESAlgorithm);
+    String AESCIPHERINSTANCE = String.format("%s/ECB/PKCS5PADDING", AESALGORITHM);
 
     /** Internal Server Error message. */
     String INTERNAL_SERVER_ERROR = "Oops! Something went wrong!!";

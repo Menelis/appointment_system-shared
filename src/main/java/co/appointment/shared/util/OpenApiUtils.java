@@ -7,6 +7,7 @@ import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.security.SecurityRequirement;
 import io.swagger.v3.oas.models.security.SecurityScheme;
 
+@SuppressWarnings({"HideUtilityClassConstructor"})
 public class OpenApiUtils {
 
     private static SecurityScheme createAPIKeyScheme() {

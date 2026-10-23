@@ -30,7 +30,7 @@ public class AESEncryptionServiceImpl implements EncryptionService {
     @Override
     public SecretKey generateEncryptionKey(final int keySize) {
         try {
-            KeyGenerator keyGenerator = KeyGenerator.getInstance(SharedConstants.AESAlgorithm);
+            KeyGenerator keyGenerator = KeyGenerator.getInstance(SharedConstants.AESALGORITHM);
             keyGenerator.init(keySize);
             return keyGenerator.generateKey();
         } catch (Exception exception) {
@@ -42,7 +42,7 @@ public class AESEncryptionServiceImpl implements EncryptionService {
     @Override
     public String encryptText(final String plainText) {
         try {
-            Cipher cipher = Cipher.getInstance(SharedConstants.AESCipherInstance);
+            Cipher cipher = Cipher.getInstance(SharedConstants.AESCIPHERINSTANCE);
             cipher.init(Cipher.ENCRYPT_MODE, SharedObjectUtils.getSecretKey(encryptionKey));
             return Base64.getEncoder().encodeToString(cipher.doFinal(plainText.getBytes(StandardCharsets.UTF_8)));
         } catch (Exception exception) {
@@ -54,7 +54,7 @@ public class AESEncryptionServiceImpl implements EncryptionService {
     @Override
     public String decryptCipherText(final String cipherText) {
         try {
-            Cipher cipher = Cipher.getInstance(SharedConstants.AESCipherInstance);
+            Cipher cipher = Cipher.getInstance(SharedConstants.AESCIPHERINSTANCE);
             cipher.init(Cipher.DECRYPT_MODE, SharedObjectUtils.getSecretKey(encryptionKey));
             return new String(cipher.doFinal(Base64.getDecoder().decode(cipherText)));
         } catch (Exception exception) {
@@ -65,7 +65,7 @@ public class AESEncryptionServiceImpl implements EncryptionService {
 
     private SecretKey generateSecretKey(final int keySize) {
         try {
-            KeyGenerator keyGenerator = KeyGenerator.getInstance(SharedConstants.AESAlgorithm);
+            KeyGenerator keyGenerator = KeyGenerator.getInstance(SharedConstants.AESALGORITHM);
             keyGenerator.init(keySize);
             return keyGenerator.generateKey();
         } catch (Exception exception) {

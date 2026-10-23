@@ -1,5 +1,6 @@
 package co.appointment.shared.constant;
 
+@SuppressWarnings({"InterfaceIsType"})
 public interface EventTypeConstants {
     String EVENT_TYPE = "eventType";
     String VERIFY_EMAIL_EVENT = "verifyEmail";

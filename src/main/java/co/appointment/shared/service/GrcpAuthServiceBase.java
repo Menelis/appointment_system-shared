@@ -6,14 +6,12 @@ import co.appointment.grpc.GetUserByIdRequest;
 import co.appointment.grpc.GetUserResponse;
 import co.appointment.shared.record.UserRecord;
 import java.util.UUID;
+import lombok.RequiredArgsConstructor;
 
+@RequiredArgsConstructor
 public abstract class GrcpAuthServiceBase {
 
-    protected final AuthServiceGrpc.AuthServiceBlockingStub authServiceBlockingStub;
-
-    public GrcpAuthServiceBase(final AuthServiceGrpc.AuthServiceBlockingStub authServiceBlockingStub) {
-        this.authServiceBlockingStub = authServiceBlockingStub;
-    }
+    private final AuthServiceGrpc.AuthServiceBlockingStub authServiceBlockingStub;
 
     public UserRecord getUserByEmail(final String email) {
         GetUserByEmailRequest request =

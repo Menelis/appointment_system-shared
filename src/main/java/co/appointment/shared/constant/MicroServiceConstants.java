@@ -1,5 +1,6 @@
 package co.appointment.shared.constant;
 
+@SuppressWarnings({"InterfaceIsType"})
 public interface MicroServiceConstants {
     String USER_SERVICE = "user_service";
     String APPOINTMENT_SERVICE = "appointment_service";

@@ -3,6 +3,7 @@ package co.appointment.shared.event.kafka;
 import co.appointment.shared.event.NotificationEvent;
 import java.util.Map;
 import lombok.Getter;
+import lombok.experimental.SuperBuilder;
 
 /**
  * Kafka Notification Event.
@@ -11,16 +12,9 @@ import lombok.Getter;
  * @param <V> Generic type for message value
  */
 @Getter
+@SuperBuilder
 public class KafkaNotificationEvent<K, V> extends NotificationEvent<V> {
     private final String topic;
     private final Map<String, Object> eventHeaders;
     private final K key;
-
-    public KafkaNotificationEvent(
-            final String topic, final V event, final Map<String, Object> eventHeaders, final K key) {
-        super(event);
-        this.topic = topic;
-        this.eventHeaders = eventHeaders;
-        this.key = key;
-    }
 }
