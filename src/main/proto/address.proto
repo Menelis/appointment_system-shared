@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "co.appointment.grpc";
+option java_outer_classname = "AddressProto";
+
+message Address {
+  string address_line1 = 1;
+  string address_line2 = 2;
+  string suburb = 3;
+  string city = 4;
+  string province = 5;
+  string postal_code = 6;
+}

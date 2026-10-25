@@ -1,4 +1,5 @@
 syntax = "proto3";
+import "address.proto";
 
 option java_multiple_files = true;
 option java_package = "co.appointment.grpc";
@@ -9,21 +10,16 @@ service BranchService {
 }
 
 message GetBranchByIdRequest {
-  int32 id = 1;
+  string id = 1;
 }
 
 message GetBranchResponse {
-  int32 id = 1;
+  string id = 1;
   string name = 2;
-  string street_no = 3;
-  string address_line_1 = 4;
-  string address_line_2 = 5;
-  string city = 6;
-  string province = 7;
-  string postal_code = 8;
-  string email_address = 9;
-  string fax_number = 10;
-  string land_line = 11;
+  Address physical_address = 3;
+  string email_address = 4;
+  string fax_number = 5;
+  string land_line = 6;
 }
 
 

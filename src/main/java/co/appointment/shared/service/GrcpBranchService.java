@@ -1,6 +1,6 @@
 package co.appointment.shared.service;
 
-import co.appointment.shared.record.BranchRecord;
+import co.appointment.shared.record.BranchSummary;
 
 public interface GrcpBranchService {
 
@@ -8,7 +8,7 @@ public interface GrcpBranchService {
      * Get Branch details from Branch Service via gRPC protocol.
      *
      * @param id branch id
-     * @return {@link BranchRecord}
+     * @return {@link BranchSummary}
      */
-    BranchRecord getBranchById(int id);
+    BranchSummary getBranchById(int id);
 }
