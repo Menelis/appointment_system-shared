@@ -28,4 +28,5 @@ public interface SharedConstants {
 
     String SEARCH_TERM_PARAMETER_NAME = "searchTerm";
     String APPOINTMENT_SYSTEM_EMAIL_FOOTER = "Kind Regards,<br/>Appointment System Team.";
+    String X_CORRELATION_ID = "X-Correlation-Id";
 }

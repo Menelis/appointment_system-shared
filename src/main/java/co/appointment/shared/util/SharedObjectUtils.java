@@ -41,6 +41,8 @@ public class SharedObjectUtils {
      * @return {@link Pageable} instance
      */
     public static Pageable getPageable(final int pageNo, final int pageSize, final Sort sort) {
+        validatePageNo(pageNo);
+        validatePageSize(pageSize);
         return PageRequest.of(pageNo - 1, pageSize, sort);
     }
 
@@ -52,6 +54,8 @@ public class SharedObjectUtils {
      * @return {@link Pageable} instance
      */
     public static Pageable getPageable(final int pageNo, final int pageSize) {
+        validatePageNo(pageNo);
+        validatePageSize(pageSize);
         return PageRequest.of(pageNo - 1, pageSize);
     }
 
@@ -59,6 +63,22 @@ public class SharedObjectUtils {
         SimpleDateFormat formatter = new SimpleDateFormat(dateFormat);
 
         return formatter.format(date);
+    }
+
+    private static void validatePageSize(final int pageSize) {
+        if (pageSize <= 0) {
+            throw new IllegalArgumentException("Page size must be greater than zero");
+        }
+
+        if (pageSize > 50) {
+            throw new IllegalArgumentException("Page size must be less than or equal to 50");
+        }
+    }
+
+    private static void validatePageNo(final int pageNo) {
+        if (pageNo < 1) {
+            throw new IllegalArgumentException("Page number must be greater than zero");
+        }
     }
 
     public static String returnEmptyIfNullOrBlank(final String stringValue) {
