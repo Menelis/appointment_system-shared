@@ -1,6 +1,7 @@
 package co.appointment.shared.service;
 
 import co.appointment.shared.record.BranchSummary;
+import java.util.UUID;
 
 public interface GrcpBranchService {
 
@@ -10,5 +11,5 @@ public interface GrcpBranchService {
      * @param id branch id
      * @return {@link BranchSummary}
      */
-    BranchSummary getBranchById(int id);
+    BranchSummary getBranchById(UUID id);
 }

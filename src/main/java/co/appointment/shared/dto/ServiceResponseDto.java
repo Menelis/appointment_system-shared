@@ -14,6 +14,7 @@ public class ServiceResponseDto {
     private boolean success;
     private String errorDescription;
     private UUID correlationId;
+    private String referenceNo;
 
     @Builder.Default
     private OffsetDateTime responseTime = OffsetDateTime.now();
